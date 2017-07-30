@@ -73,8 +73,8 @@ function ($scope, $stateParams) {
         /* set callback for PDU with specific action */
         channel.on('rtm/subscription/data', function (pdu) {
           pdu.body.messages.forEach(function (msg) {
-            console.log('Got animal ' + msg.who + ': ' + JSON.stringify(msg));
-            window.open("https://www.google.com/maps/dir/?api=1&origin=draper+university&destination=san+francisco",'_system');
+            console.log('Got animal ' + msg.place_id + ': ' + JSON.stringify(msg)); //change draper uni to iphone GPS 
+            window.open("https://www.google.com/maps/dir/?api=1&origin=draper+university&destination=san+francisco&destination_place_id=" + msg.place_id,'_system');
           });
         });
         
