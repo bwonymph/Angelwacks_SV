@@ -1,19 +1,40 @@
 #hospital1 bot
 
+from __future__ import print_function
 
-import json 
+import time
 
-URL = "https://www.elcaminohospital.org/"
+from satori.rtm.client import make_client
 
-data = {}  
-data['hospital'] = []  
+endpoint = "#############"
+appkey = "#############"
 
-data['hospital'].append({  
-    'name': 'El Camino Mountain Hospital',
-    'time': '20',
-    'ER': 'yes',
-    'patients': '21'
-})
+def main():
+    with make_client(endpoint=endpoint, appkey=appkey) as client:
+        print('Streaming hospital3 data')
+        timer = 0
 
-with open('data3.txt', 'w') as outfile:  
-    json.dump(data, outfile)
+
+        while True:
+
+            def on_publish_ack(pdu):
+                if pdu['action'] == 'rtm/publish/ok':
+                    print('Publish confirmed')
+                else:
+                    print(
+                        'Failed to publish. '
+                        'RTM replied with the error {0}: {1}'.format(
+                            pdu['body']['error'], pdu['body']['reason']))
+
+            message = {"time": "%s" %timer, "patients": "12"}
+            client.publish("hospital3", message, callback=on_publish_ack)
+            timer = timer + 5
+            time.sleep(5)
+            if (timer == 20):
+            		timer = 0
+
+
+
+
+if __name__ == '__main__':
+    main()
