@@ -1,3 +1,27 @@
-Hospital info:
+Hospital info
 
-Names:  
+Name: San Mateo Medical Center (http://204.114.51.208/)
+Location: 222 39th Avenue, San Mateo, CA 94403
+Base triage program on # of beds in ER and current # of patients being seen*
+509 beds total
+14 beds in the Emergency Room
+
+Name: El Camino Hospital (https://www.elcaminohospital.org/)
+Location: 2500 Grant Rd, Mountain View, CA 94040
+Base triage program on # of beds in ER and current # of patients being seen*
+443 total beds
+
+
+Name: Good Samaritan Hospital (http://goodsamsanjose.com/)
+Base triage program on # of beds in ER and current # of patients being seen*
+Services/specialty (read here: http://goodsamsanjose.com/services/)
+349 total beds
+
+Name: Kaiser Permanente (San Mateo region)
+Average wait time in ER > 4 hours
+Base triage program on # of beds in ER and current # of patients being seen*
+KP Health Connect is the main system used to store patient information
+Allows patient to have complete access to their medical record
+contracting with IBM for data storage
+has one of the largest EHR (electronic health record) in the world
+90 beds total
