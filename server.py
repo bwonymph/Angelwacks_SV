@@ -1,6 +1,13 @@
 #check backend
 from __future__ import print_function
 from satori.rtm.client import make_client, SubscriptionMode
+from sparkpost import SparkPost
+# from FlowrouteMessagingLib.Models.Message import Message
+# from FlowrouteMessagingLib.Controllers.APIController import APIController    
+
+# from googleapiclient.discovery import build
+from google.cloud import translate
+
 
 import urllib2
 import json 
@@ -12,13 +19,15 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 #API endpoints for Satori
-endpoint = "wss://h0j3zwoo.api.satori.com"
-appkey = "d3fE5A8bc1D9C2e8761DfCf7d6cab13a"
+endpoint = "#############"
+appkey = "#############"
 
 global timer2 
 global name_dir
 
 timer2 = 0
+
+
 
 url = urllib2.urlopen("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.565068,-122.322448&radius=50000&type=hospital&keyword=kasier&key=AIzaSyD7VsS765wmLmGAzbnzit0sk_dB_wFULDI")
 data = json.loads(url.read().decode())
@@ -85,7 +94,7 @@ with make_client(endpoint=endpoint, appkey=appkey) as client:
     client.subscribe('hospital1', SubscriptionMode.SIMPLE, observer)
     count = 0
     try:
-        while count != 4 :
+        while count != 7 :
             time.sleep(1)
             count = count +1 
     except KeyboardInterrupt:
@@ -131,13 +140,36 @@ else:
 print(timer2)
 
 
+ 
+# sparky = SparkPost('#############') #Begin sparkpost API
+ 
+# #Translation services for text
+# translate_client = translate.Client()
+
+#     # The text to translate
+# translation = u'Help this is my symptoms'
+#     # The target language
+# target = 'es' #spanish
+
+#     # Translates some text into target
+# text = translate_client.translate(
+#     translation,
+#     target_language=target)
+
+# response = sparky.transmissions.send( #Send email to emergency services/doctor for prognosis
+#     use_sandbox=True,
+#     recipients=['bwonymph@gmail.com'],
+#     html='<html><body><p>My symptoms are attached below: ',
+#     from_email='localpart@sparkpostbox.com',
+#     subject='%s'%text)
+
 
 def send_final():
     with make_client(endpoint=endpoint, appkey=appkey) as client:
         print('Connected to Satori RTM!')
         count = 0
 
-        while count !=4:
+        while True:
 
             def on_publish_ack(pdu):
                 if pdu['action'] == 'rtm/publish/ok':
@@ -155,10 +187,17 @@ def send_final():
             client.publish("output", message, callback=on_publish_ack)
 
             time.sleep(1)
-            count = count+1
+            # count = count+1
 
 
 send_final()
+
+
+
+
+
+
+
 
 
 
