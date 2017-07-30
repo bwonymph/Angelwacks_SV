@@ -9,10 +9,14 @@ angular.module('app.routes', [])
   $stateProvider
     
 
-      .state('fileHistory', {
+      .state('menu.fileHistory', {
     url: '/page2',
-    templateUrl: 'templates/fileHistory.html',
-    controller: 'fileHistoryCtrl'
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/fileHistory.html',
+        controller: 'fileHistoryCtrl'
+      }
+    }
   })
 
   .state('menu', {
@@ -31,22 +35,22 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu.chat', {
-    url: '/page9',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/chat.html',
-        controller: 'chatCtrl'
-      }
-    }
-  })
-
   .state('menu.meowtest', {
     url: '/page12',
     views: {
       'side-menu21': {
         templateUrl: 'templates/meowtest.html',
         controller: 'meowtestCtrl'
+      }
+    }
+  })
+
+  .state('menu.page10', {
+    url: '/page10',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/page10.html',
+        controller: 'page10Ctrl'
       }
     }
   })

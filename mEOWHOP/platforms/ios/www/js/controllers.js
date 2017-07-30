@@ -114,34 +114,6 @@ function($scope, $stateParams){
 
 }])
    
-.controller('chatCtrl', ['$scope', '$stateParams', '$firebaseArray', '$ionicUser', function ($scope, $stateParams, $firebaseArray, $ionicUser) {
-    
-    $scope.data = {
-        'message': ''
-    }
-    
-
-    
-      var ref = firebase.database().ref().child("messages");
-      // create a synchronized array
-      $scope.messages = $firebaseArray(ref);
-      
-      // add new items to the array
-      // the message is automatically added to our Firebase database!
-      $scope.addMessage = function() {
-        $scope.messages.$add({
-          text: $scope.data.message,
-          email: $ionicUser.details.email,
-          name: $ionicUser.details.name
-        });
-        $scope.data.message = '';
-      };
-      
-      
-      
-
-}])
-   
 .controller('meowtestCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
@@ -149,30 +121,27 @@ function ($scope, $stateParams) {
     //**
     $scope.mapLink=function(){
         //window.open('http://www.google.com','self');
-        //var RTM = require('..');
+       //var RTM = require('..');
     
         var endpoint = 'wss://h0j3zwoo.api.satori.com';
         var appkey = 'd3fE5A8bc1D9C2e8761DfCf7d6cab13a';
         
         var client = new RTM(endpoint, appkey);
-        
+        window.open('http://www.google.com','self');
         client.on('enter-connected', function () {
-          //window.open('http://www.google.com','self');
           console.log('Connected to Satori RTM!');
         });
         
         client.on('error', function (error) {
-          //window.open('http://www.google.com','self');
           console.log('Failed to connect', error);
         });
         
-        var channel = client.subscribe('output', RTM.SubscriptionMode.SIMPLE);
-        //window.open('http://www.google.com','self');
+        var channel = client.subscribe('animals', RTM.SubscriptionMode.SIMPLE);
         
         /* set callback for state transition */
         channel.on('enter-subscribed', function () {
           console.log('Subscribed to: ' + channel.subscriptionId);
-          //window.open('http://www.google.com','self');
+          window.open('http://www.google.com','self');
         });
         
         channel.on('leave-subscribed', function () {
@@ -180,13 +149,10 @@ function ($scope, $stateParams) {
         });
         
         /* set callback for PDU with specific action */
-        channel.on('rtm/subscription/data', function (pdu) {          
-
-          //window.open('http://www.google.com','self');
+        channel.on('rtm/subscription/data', function (pdu) {
           pdu.body.messages.forEach(function (msg) {
-            console.log('Got animal ' + msg.place_id + ': ' + JSON.stringify(msg));
-            //window.open("https://maps.googleapis.com/maps/api/directions/json?origin=sacramento&destination=place_id:"+ msg.place_id+"&key=AIzaSyD7VsS765wmLmGAzbnzit0sk_dB_wFULDI",'self');
-            window.open("https://www.google.com/maps/dir/?api=1&origin=draper+university&destination=san+francisco",'self');
+            console.log('Got animal ' + msg.who + ': ' + JSON.stringify(msg));
+            //window.open("https://www.google.com/maps/dir/?api=1&origin=draper+university&destination=san+francisco",'_system');
           });
         });
         
@@ -203,6 +169,14 @@ function ($scope, $stateParams) {
         client.start();
             
     };
+
+}])
+   
+.controller('page10Ctrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
 
 }])
  

@@ -17,14 +17,14 @@
       <h3 id="menu-heading1" style="color:#FAF2F2;font-weight:300;text-align:center;">{{userData.name}}</h3>
       <div class="spacer" style="width: 268px; height: 26px;"></div>
       <ion-list id="menu-list1" class="manual-list-fullwidth">
-        <ion-item class="item-icon-left side-menu-item" id="menu-list-item1" href-inappbrowser="page1" active-page-highlight="">
+        <ion-item class="item-icon-left side-menu-item" id="menu-list-item1" ui-sref="menu.fileHistory()" menu-close="" active-page-highlight="">
           <i class="icon ion-ios-person-outline"></i>Profile</ion-item>
-        <ion-item class="item-icon-left side-menu-item" id="menu-list-item4" ui-sref="menu.chat()" menu-close="" active-page-highlight="">
-          <i class="icon ion-chatboxes"></i>Chat Groups</ion-item>
+        <ion-item class="item-icon-left side-menu-item" id="menu-list-item4" ui-sref="menu.page10()" menu-close="" active-page-highlight="">
+          <i class="icon ion-chatboxes"></i>Symptom Checker</ion-item>
         <ion-item class="item-icon-left side-menu-item" id="menu-list-item9" ui-sref="menu.chat()" menu-close="" active-page-highlight="">
-          <i class="icon ion-cash"></i>Pay Rent / Ultilities</ion-item>
+          <i class="icon ion-alert-circled"></i>Pay Rent / Ultilities</ion-item>
       </ion-list>
-      <button id="menu-button5" ng-click="logout()" class="button button-positive button-block">Logout</button>
+      <a ui-sref="menu.meowtest()" menu-close="" id="menu-button5" ng-click="logout()" class="button button-positive button-block">Logout</a>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
